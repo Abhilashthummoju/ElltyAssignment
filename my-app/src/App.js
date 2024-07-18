@@ -1,7 +1,34 @@
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
+
+  const [selected, setSelected] = useState({
+    page1: false,
+    page2: false,
+    page3: false,
+    page4: false,
+    allPages: false
+  });
+
+  const toggleCheckbox = (page) => {
+    setSelected(prevState => ({
+      ...prevState,
+      [page]: !prevState[page]
+    }));
+  };
+
+  const toggleAllPages = () => {
+    setSelected(prevState => ({
+      ...prevState,
+      allPages: !prevState.allPages,
+      page1: !prevState.allPages,
+      page2: !prevState.allPages,
+      page3: !prevState.allPages,
+      page4: !prevState.allPages
+    }));
+  };
   return (
     <div style={{display:'flex',flexDirection:'row',backgroundColor:'#e1e1e1',height:'100vh'}}>
 
@@ -100,7 +127,9 @@ function App() {
         <div style={{padding:"10px 0px 10px 0px",boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",width:"370px",height:"326px",border:"1px solid",backgroundColor:"white",position:"relative",top:"85px",left:"104px",borderRadius:"6px",borderColor:"#c9c9c9"}}>
           <div style={{width:"370px",height:'42px',backgroundColor:"#FFFFFF",display:"flex",justifyContent:"space-between",alignItems:'center'}}>
             <label color='black' style={{marginLeft:"15px",fontSize:"13px"}}>All Pages</label>
-            <div style={{display:'flex',justifyContent:'center',alignItems:'center',margin:"12px",width:'23px',height:'23px',borderRadius:'6px',backgroundColor:'#FFFFFF',border:"1px solid",borderColor:"#c9c9c9"}}></div>
+            <div style={{display:'flex',justifyContent:'center',alignItems:'center',margin:"12px",width:'23px',height:'23px',borderRadius:'6px',backgroundColor:selected.allPages ?"#2469F6" :'#FFFFFF',border:"1px solid",borderColor:"#c9c9c9"}}>
+            <FontAwesomeIcon icon={faCheck} style={{color: '#FFFFFF' }} onClick={toggleAllPages} />
+            </div>
           </div>
           <div style={{width:"370px",height:"20px",padding:"10px 15px 10px 15px",display:"flex"}}>
             <div style={{width:"340px", height: "0.7px",border:"none", borderBottom: "0.7px solid black" }}></div>
@@ -108,19 +137,27 @@ function App() {
           <div style={{width:"370px",height:"164px",marginTop:"-10px"}}>
             <div style={{width:"370px",height:'42px',backgroundColor:"#FFFFFF",display:"flex",justifyContent:"space-between",alignItems:'center'}}>
               <label color='black' style={{marginLeft:"15px",fontSize:"13px"}}>Page 1</label>
-              <div style={{display:'flex',justifyContent:'center',alignItems:'center',margin:"12px",width:'23px',height:'23px',borderRadius:'6px',backgroundColor:'#FFFFFF',border:"1px solid",borderColor:"#c9c9c9"}}></div>
+              <div style={{display:'flex',justifyContent:'center',alignItems:'center',margin:"12px",width:'23px',height:'23px',borderRadius:'6px',backgroundColor:selected.page1?"#2469F6":'#FFFFFF',border:"1px solid",borderColor:"#c9c9c9"}}>
+              <FontAwesomeIcon icon={faCheck} style={{ opacity: selected.page1 ? 1 : 0.15, color: '#FFFFFF' }} onClick={() => toggleCheckbox('page1')} />
+              </div>
             </div>
             <div style={{width:"370px",height:'42px',backgroundColor:"#FFFFFF",display:"flex",justifyContent:"space-between",alignItems:'center'}}>
               <label color='black' style={{marginLeft:"15px",fontSize:"13px"}}>Page 2</label>
-              <div style={{display:'flex',justifyContent:'center',alignItems:'center',margin:"12px",width:'23px',height:'23px',borderRadius:'6px',backgroundColor:'#FFFFFF',border:"1px solid",borderColor:"#c9c9c9"}}></div>
+              <div style={{display:'flex',justifyContent:'center',alignItems:'center',margin:"12px",width:'23px',height:'23px',borderRadius:'6px',backgroundColor:selected.page2?"#2469F6":'#FFFFFF',border:"1px solid",borderColor:"#c9c9c9"}}>
+              <FontAwesomeIcon icon={faCheck} style={{ opacity: selected.page2 ? 1 : 0.15, color: '#FFFFFF' }} onClick={() => toggleCheckbox('page2')} />
+              </div>
             </div>
             <div style={{width:"370px",height:'42px',backgroundColor:"#FFFFFF",display:"flex",justifyContent:"space-between",alignItems:'center'}}>
               <label color='black' style={{marginLeft:"15px",fontSize:"13px"}}>Page 3</label>
-              <div style={{display:'flex',justifyContent:'center',alignItems:'center',margin:"12px",width:'23px',height:'23px',borderRadius:'6px',backgroundColor:'#FFFFFF',border:"1px solid",borderColor:"#c9c9c9"}}></div>
+              <div style={{display:'flex',justifyContent:'center',alignItems:'center',margin:"12px",width:'23px',height:'23px',borderRadius:'6px',backgroundColor:selected.page3?"#2469F6":'#FFFFFF',border:"1px solid",borderColor:"#c9c9c9"}}>
+              <FontAwesomeIcon icon={faCheck} style={{color: '#FFFFFF' }} onClick={() => toggleCheckbox('page3')} />
+              </div>
             </div>
             <div style={{width:"370px",height:'42px',backgroundColor:"#FFFFFF",display:"flex",justifyContent:"space-between",alignItems:'center'}}>
               <label color='black' style={{marginLeft:"15px",fontSize:"13px"}}>Page 4</label>
-              <div style={{display:'flex',justifyContent:'center',alignItems:'center',margin:"12px",width:'23px',height:'23px',borderRadius:'6px',backgroundColor:'#FFFFFF',border:"1px solid",borderColor:"#c9c9c9"}}></div>
+              <div style={{display:'flex',justifyContent:'center',alignItems:'center',margin:"12px",width:'23px',height:'23px',borderRadius:'6px',backgroundColor:selected.page4?"#2469F6":'#FFFFFF',border:"1px solid",borderColor:"#c9c9c9"}}>
+              <FontAwesomeIcon icon={faCheck} style={{ color: '#FFFFFF' }} onClick={() => toggleCheckbox('page4')} />
+              </div>
             </div>
           </div>
           <div style={{width:"370px",height:"20px",padding:"10px 15px 10px 15px",display:"flex"}}>
